@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>ARU Dev Solutions LLC.</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}" />
+    </head>
+
+    <body>
+        <h1>ARU Dev Solutions LLC.</h1>
+
+            <form method="POST" action="/" class="loginwindow">
+                {{ form.csrf_token }}
+                <div class="form-group">
+                    {{ form.username.label }} {{ form.username }}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label }} {{ form.password }}
+                </div>
+                <button type="submit" class="btn btn-primary">{{ form.submit.label }}</button>
+            </form>
+        
+    </body>
+</html>

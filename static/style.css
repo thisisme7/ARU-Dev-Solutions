@@ -1,0 +1,52 @@
+/*
+    Created on : 30. 1. 2022, 23:05:56
+    Author     : 2015103
+*/
+
+body {
+  background-color: rgba(173, 216, 230, 0.223);
+  font-family: sans-serif;
+}
+.container {
+  text-align: left;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+/*
+    ### MAIN PAGE ###
+*/
+h1 {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: blue;
+}
+.loginwindow {
+  margin-left: 40%;
+  margin-right: 40%;
+  font-family: sans-serif;
+}
+.form-group {
+  margin-bottom: 7px;
+  width: 200px;
+}
+.btn-primary {
+  width: 200px;
+}
+/*
+    ### ADMIN PAGE ###
+*/
+
+.registerform {
+  text-align: center;
+}
+
+.result {
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: solid;
+  text-transform: uppercase;
+  color: green;
+  text-align: center;
+}
+.userslist {
+  text-align: left;
+}

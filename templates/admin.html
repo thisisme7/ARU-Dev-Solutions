@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>ARU Dev Solutions LLC.</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}" />
+    </head>
+    <body>
+            <div class="container">
+            <h1>ARU Dev Solutions LLC.</h1>
+            <h3>Admin page</h3>
+            <p>
+                You can add new users and view the current ones
+            </p>
+        
+        <div class="registerform">
+            <form method="POST", action="/admin", autocomplete="off">
+                {{ form.csrf_token }}
+            <p>
+                New user:
+                {{ form.new_username }}
+            </p>
+            <p>
+                Password:
+                {{ form.new_password }}
+            </p>
+            {{ form.submit }}
+        </form>
+        <div class="result">{{ result }}</div>
+    </div>
+</div>
+    <div class="container">   
+    <div class="userslist">    
+        <ul>
+            {% for user in listofusers %}
+            <li>{{ user.id }} - {{ user.username }} - {{ user.password }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <form method="GET" action="/admin">
+        <button type="submit">Refresh Database</button>
+    </form>
+</div>
+        
+
+    </body>
+</html>
