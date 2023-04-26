@@ -14,9 +14,9 @@ import threading, hashlib
 from flask_login import LoginManager, UserMixin, login_required, login_user
 
 app = Flask(__name__)
-engine = create_engine("mariadb+pymysql://username:password@127.0.0.1:3306/dbname")
+engine = create_engine("mariadb+pymysql://username:password@127.0.0.1:3306/dbname") # reconfigure the string appropriately for your DB
 base = declarative_base()
-app.config['SECRET_KEY'] = 'put_a_secret_key'
+app.config['SECRET_KEY'] = 'put_a_secret_key' # security feature for data authentication between server and browser
 
 Talisman(app)
 
@@ -26,7 +26,7 @@ session = Session()
 login_obj = LoginManager(app)
 login_obj.init_app(app)
 
-class Users(base):
+class Users(base): # table in the database 
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True, autoincrement=True)
     username = Column(String(20), nullable=False)
@@ -37,7 +37,7 @@ class Users(base):
         self.username = username
         self.password = password
 
-class RegisterForm(FlaskForm):
+class RegisterForm(FlaskForm): # form for registering users on admin page
     new_username = StringField('New username', validators=[DataRequired(20)])
     new_password = PasswordField('New passord', validators=[DataRequired(100)])
     submit = SubmitField('Submit')    
@@ -46,7 +46,7 @@ class Admin(UserMixin):
     def __init__(self, user_id):
         self.id = user_id
 
-class LoginForm(FlaskForm):
+class LoginForm(FlaskForm): # login form for main/home page
     username = StringField('Username:')
     password = PasswordField('Password:')
     submit = SubmitField('Login')
@@ -56,7 +56,7 @@ def load_user(username):
         return Admin(username)
 
 @app.route("/", methods=['GET', 'POST'])
-def index():
+def index(): # rendering main/home page
     form = LoginForm()
     if request.method == 'POST' and form.validate_on_submit():
         username = form.username.data
@@ -70,7 +70,7 @@ def index():
 
 @app.route("/admin", methods=['POST', 'GET'])
 @login_required
-def admin():
+def admin(): # admin page for authorized users only
     form = RegisterForm()
     listofusers = session.query(Users).all()
     if request.method == 'POST' and form.validate_on_submit():
