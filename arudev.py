@@ -14,9 +14,9 @@ import threading, hashlib
 from flask_login import LoginManager, UserMixin, login_required, login_user
 
 app = Flask(__name__)
-engine = create_engine("mariadb+pymysql://root:thisisme@127.0.0.1:3306/arudevsol")
+engine = create_engine("mariadb+pymysql://username:password@127.0.0.1:3306/dbname")
 base = declarative_base()
-app.config['SECRET_KEY'] = 'secret_key'
+app.config['SECRET_KEY'] = 'put_a_secret_key'
 
 Talisman(app)
 
